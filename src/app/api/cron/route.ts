@@ -1,7 +1,6 @@
 export async function GET(request: Request) {
   try {
-    const { searchParams } = new URL(request.url);
-    const secretToken = searchParams.get('secret');
+    const { secretToken } = await request.json();
 
     if (secretToken !== process.env.CRON_SECRET_TOKEN) {
       console.log("Unauthenticated user");
